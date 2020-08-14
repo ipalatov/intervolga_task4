@@ -1,0 +1,9 @@
+{
+    "name": "ipalatov/intervolga_task4",
+    "description": "Test task for index view and data adding",
+    "autoload": {
+        "psr-4": {
+            "classes\\": "classes"
+        }
+    }
+}
