@@ -31,7 +31,7 @@ class  Route
             $actionName = strstr($routeParts[$a], '?', TRUE) ? strstr($routeParts[$a], '?', TRUE) : $routeParts[$a];
         }
 
-        $controllerName = 'classes\\' . $controllerName . 'Controller';
+        $controllerName = 'classes\\' . ucfirst($controllerName) . 'Controller';
         $actionName = 'action' . ucfirst($actionName);
 
 

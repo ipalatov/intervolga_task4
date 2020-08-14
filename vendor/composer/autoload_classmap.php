@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'classes\\CountriesController' => $baseDir . '/classes/CountriesController.php',
+    'classes\\CountriesModel' => $baseDir . '/classes/CountriesModel.php',
+    'classes\\MainController' => $baseDir . '/classes/MainController.php',
     'classes\\Route' => $baseDir . '/classes/Route.php',
     'classes\\View' => $baseDir . '/classes/View.php',
-    'classes\\mainController' => $baseDir . '/classes/mainController.php',
 );

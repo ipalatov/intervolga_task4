@@ -21,9 +21,11 @@ class ComposerStaticInit6a5ff4417510ad88ceb046aab204699f
     );
 
     public static $classMap = array (
+        'classes\\CountriesController' => __DIR__ . '/../..' . '/classes/CountriesController.php',
+        'classes\\CountriesModel' => __DIR__ . '/../..' . '/classes/CountriesModel.php',
+        'classes\\MainController' => __DIR__ . '/../..' . '/classes/MainController.php',
         'classes\\Route' => __DIR__ . '/../..' . '/classes/Route.php',
         'classes\\View' => __DIR__ . '/../..' . '/classes/View.php',
-        'classes\\mainController' => __DIR__ . '/../..' . '/classes/mainController.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

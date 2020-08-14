@@ -4,7 +4,7 @@ namespace classes;
 
 class View
 {
-    public function render($contentView, $layotView, $country = null)
+    public function render($contentView, $layotView, $countries = null)
     {
         include 'views/layouts/' . $layotView;
     }
