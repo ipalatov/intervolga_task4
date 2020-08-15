@@ -21,7 +21,7 @@ class CountriesController
 
     public function actionCreate()
     {
-        $countries = $this->countriesModel->addCountry();
+        $this->countriesModel->addCountry();
         $this->view->render('addCountryView.php', 'layoutView.php');
     }
 }

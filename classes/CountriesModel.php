@@ -36,22 +36,21 @@ class CountriesModel
 
     public function addCountry()
     {
+        // очищаем сессию по нажатию кнопки "очистить"
+        if (isset($_POST['clear'])) {
+            unset($_SESSION['name']);
+            unset($_SESSION['abb_name']);
+            unset($_SESSION['population']);
+        };
+
         if (empty($_POST['submit'])) return;
 
-        $name = $_POST['name'];
-        $abb_name = $_POST['abb_name'];
-        $population = $_POST['population'];
+        // записываем в переменные и в сессию данные POST запроса
+        $name = $_SESSION['name'] = $_POST['name'];
+        $abb_name = $_SESSION['abb_name'] = strtoupper($_POST['abb_name']);
+        $population = $_SESSION['population'] = $_POST['population'];
 
-        // echo '<pre>';
-        // var_dump($name);
-        // var_dump($abb_name);
-        // var_dump($population);
-        // echo '</pre>';
-
-        //     // валидация
-        //     $name = $this->validateName($name);
-
-        // запрос на добавление автора
+        // SQL запрос на добавление автора
         $sql = "INSERT INTO `countries` SET `name` = :name,`abb_name` = :abb_name,`population` = :population";
         $stm = $this->dbconnect->prepare($sql);
         $stm->execute(compact('name', 'abb_name', 'population'));
@@ -60,6 +59,10 @@ class CountriesModel
         $info = $stm->errorInfo();
         if ($info['0'] == "00000") {
             echo 'Запись успешно добавлена в базу данных!';
+            unset($_SESSION['name']);
+            unset($_SESSION['abb_name']);
+            unset($_SESSION['population']);
+            // header('Location: ' . APP_ROOT . '/countries/create', true, 303);
         } else {
             echo 'Ошибка: код ' . $info['1'] . ', сообщение: ' . $info['2'];
         }
