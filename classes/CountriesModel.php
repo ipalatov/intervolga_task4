@@ -19,6 +19,7 @@ class CountriesModel
         try {
             $dbconnect = new PDO('mysql:dbname=' . DB_NAME . ';host=' . DB_HOST . ';charset=UTF8', DB_USER, DB_PASSWORD);
         } catch (PDOException $e) {
+            $_SESSION['error'] = $e->getMessage();
             die($e->getMessage());
         }
         return $dbconnect;
@@ -58,13 +59,14 @@ class CountriesModel
         // проверяем ошибки
         $info = $stm->errorInfo();
         if ($info['0'] == "00000") {
-            echo 'Запись успешно добавлена в базу данных!';
+            $_SESSION['message'] = 'Запись успешно добавлена в базу данных!';
             unset($_SESSION['name']);
             unset($_SESSION['abb_name']);
             unset($_SESSION['population']);
-            // header('Location: ' . APP_ROOT . '/countries/create', true, 303);
+            header('Location: ' . APP_ROOT . '/countries/create', true, 303);
+            die;
         } else {
-            echo 'Ошибка: код ' . $info['1'] . ', сообщение: ' . $info['2'];
+            $_SESSION['error'] = 'Ошибка: код ' . $info['1'] . ', сообщение: ' . $info['2'];
         }
     }
 }
