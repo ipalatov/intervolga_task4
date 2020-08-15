@@ -55,11 +55,12 @@ class CountriesModel
         $sql = "INSERT INTO `countries` SET `name` = :name,`abb_name` = :abb_name,`population` = :population";
         $stm = $this->dbconnect->prepare($sql);
         $stm->execute(compact('name', 'abb_name', 'population'));
+        $lastId = $this->dbconnect->lastInsertId();
 
-        // проверяем ошибки
+        // проверяем ошибки и выводим сообщения
         $info = $stm->errorInfo();
         if ($info['0'] == "00000") {
-            $_SESSION['message'] = 'Запись успешно добавлена в базу данных!';
+            $_SESSION['message'] = "Запись #{$lastId} успешно добавлена в базу данных!";
             unset($_SESSION['name']);
             unset($_SESSION['abb_name']);
             unset($_SESSION['population']);
