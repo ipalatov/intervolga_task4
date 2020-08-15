@@ -21,6 +21,7 @@ class CountriesController
 
     public function actionCreate()
     {
-        var_dump('метод' . __METHOD__);
+        $countries = $this->countriesModel->addCountry();
+        $this->view->render('addCountryView.php', 'layoutView.php');
     }
 }
