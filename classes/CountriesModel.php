@@ -14,6 +14,10 @@ class CountriesModel
         $this->dbconnect = static::DBConnect();
     }
 
+    /** 
+     * Создает PDO объект - соединение с базой данных
+     * @return PDO
+     */
     static function DBConnect()
     {
         try {
@@ -25,6 +29,10 @@ class CountriesModel
         return $dbconnect;
     }
 
+    /**
+     * Делает запрос к базе данных на получение всех записей в таблице
+     * @return array
+     */
     public function getIndex()
     {
         $sql = "SELECT * FROM `countries`";
@@ -35,6 +43,10 @@ class CountriesModel
         return $data;
     }
 
+    /**
+     * Добавляет новую запись в базу данных из формы с методом POST
+     * @return void
+     */
     public function addCountry()
     {
         // очищаем сессию по нажатию кнопки "очистить"

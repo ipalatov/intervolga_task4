@@ -9,7 +9,7 @@ class  Route
         $controllerName = 'main';
         $actionName = 'index';
 
-        // если URL в корне хоста, то делаем маршрут на главную страницу APP_MAIN
+        // если URL в корне, то делаем маршрут на главную страницу APP_MAIN
         if (APP_ROOT == $_SERVER['REQUEST_URI']) {
             $route = APP_MAIN;
         } else {
@@ -30,7 +30,8 @@ class  Route
         if (!empty($routeParts[$a])) {
             $actionName = strstr($routeParts[$a], '?', TRUE) ? strstr($routeParts[$a], '?', TRUE) : $routeParts[$a];
         }
-
+        
+        // путь до контролера и действия
         $controllerName = 'classes\\' . ucfirst($controllerName) . 'Controller';
         $actionName = 'action' . ucfirst($actionName);
 
